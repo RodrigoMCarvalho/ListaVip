@@ -32,5 +32,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/rodri_000/Desktop/Desenvolvimento Web/Projeto InfoX/Hibernate/hibernate-release-5.3.0.Final/lib/required/thymeleaf-spring5-3.0.9.RELEASE.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

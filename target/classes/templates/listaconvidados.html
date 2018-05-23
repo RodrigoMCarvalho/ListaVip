@@ -44,16 +44,14 @@
 					<td><span th:text="${convidado.nome}"></span></td>
 					<td><span th:text="${convidado.email}"></span></td>
 					<td><span th:text="${convidado.telefone}"></span></td>
+					<td><a th:href="@{/delete} + ${convidado.id}" class="btn btn-danger btn-xs">Remover</a></td>
 				</tr>
 			</table>
 		</div>
-		
-		
-		
-		
+
 	</div>
 	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="bootstrap/js/bootstrap.minjs"></script>
 </body>
 </html>
 

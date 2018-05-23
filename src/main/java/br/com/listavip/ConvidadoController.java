@@ -3,6 +3,7 @@ package br.com.listavip;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,11 +37,16 @@ public class ConvidadoController {
 			@RequestParam("telefone") String telefone) {
 		
 		Convidado convidado = new Convidado(nome, email, telefone);
-		
 		repository.save(convidado);
 
+		return "redirect:/listaconvidados"; //após persistir os dados, redireciona para a página
+	}
+	
+	@RequestMapping("/delete{id}")
+	public String excluir(@PathVariable Long id) {
+		repository.deleteById(id);
+		
 		return "redirect:/listaconvidados";
-
 	}
 
 }

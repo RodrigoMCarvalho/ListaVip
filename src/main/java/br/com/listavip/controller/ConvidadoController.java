@@ -1,4 +1,4 @@
-package br.com.listavip;
+package br.com.listavip.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import br.com.enviadorEmail.EmailService;
 import br.com.listavip.model.Convidado;
 import br.com.listavip.repository.ConvidadoRepository;
 
@@ -38,6 +39,8 @@ public class ConvidadoController {
 		
 		Convidado convidado = new Convidado(nome, email, telefone);
 		repository.save(convidado);
+		
+		new EmailService().enviar(nome, email); //Jar criado para o envio de email (enviadorEmail)
 
 		return "redirect:/listaconvidados"; //após persistir os dados, redireciona para a página
 	}

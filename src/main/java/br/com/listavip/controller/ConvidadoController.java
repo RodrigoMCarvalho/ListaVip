@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.enviadorEmail.EmailService;
 import br.com.listavip.model.Convidado;
-import br.com.listavip.repository.ConvidadoRepository;
+import br.com.listavip.service.ConvidadoService;
 
 @Controller
 public class ConvidadoController {
-
+	
 	@Autowired
-	ConvidadoRepository repository;
+	private ConvidadoService service;
 
 	@RequestMapping("/")
 	public String index() {
@@ -26,10 +26,10 @@ public class ConvidadoController {
 	@RequestMapping("/listaconvidados")
 	public String listaConvidados(Model model) {
 
-		Iterable<Convidado> convidados = repository.findAll(); // obtém os dados do BD
+		Iterable<Convidado> convidados = service.ObterConvidados();
 
 		model.addAttribute("convidados", convidados); // No Spring MVC, o envio de variáveis para a view
-														// é realizada pelo Model - OBS: "convidados" é referente a view
+													  // é realizada pelo Model - OBS: "convidados" é referente a view
 		return "listaconvidados";
 	}
 
@@ -38,7 +38,7 @@ public class ConvidadoController {
 			@RequestParam("telefone") String telefone) {
 		
 		Convidado convidado = new Convidado(nome, email, telefone);
-		repository.save(convidado);
+		service.salvar(convidado);
 		
 		new EmailService().enviar(nome, email); //Jar criado para o envio de email (enviadorEmail)
 
@@ -47,7 +47,7 @@ public class ConvidadoController {
 	
 	@RequestMapping("/delete{id}")
 	public String excluir(@PathVariable Long id) {
-		repository.deleteById(id);
+		service.excluirPorId(id);
 		
 		return "redirect:/listaconvidados";
 	}

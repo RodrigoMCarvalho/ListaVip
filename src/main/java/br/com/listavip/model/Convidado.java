@@ -59,4 +59,11 @@ public class Convidado {
 		this.telefone = telefone;
 	}
 
+	@Override
+	public String toString() {
+		return "Convidado [id=" + id + ", nome=" + nome + ", email=" + email + ", telefone=" + telefone + "]";
+	}
+	
+	
+
 }

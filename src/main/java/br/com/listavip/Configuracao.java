@@ -21,7 +21,7 @@ public class Configuracao {
 		HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
 		adapter.setDatabase(Database.MYSQL);
 		adapter.setShowSql(true);
-		adapter.setGenerateDdl(true); //criação de tabelas automaticamente pelo Hibernate
+		adapter.setGenerateDdl(true); //criaÃ§Ã£o de tabelas automaticamente pelo Hibernate
 		adapter.setDatabasePlatform("org.hibernate.dialect.MySQL5InnoDBDialect");
 		adapter.setPrepareConnection(true);
 		

@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import br.com.listavip.model.Convidado;
 
-public interface ConvidadoRepository extends CrudRepository<Convidado, Long >{
-	
+public interface ConvidadoRepository extends CrudRepository<Convidado, Long> {
+
 }

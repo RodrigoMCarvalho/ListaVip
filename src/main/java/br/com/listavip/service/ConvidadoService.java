@@ -15,7 +15,7 @@ public class ConvidadoService {
 	ConvidadoRepository repository;
 	
 	public Iterable<Convidado> ObterConvidados() {
-		Iterable<Convidado> convidados = repository.findAll(); // obtém os dados do BD
+		Iterable<Convidado> convidados = repository.findAll(); // obtï¿½m os dados do BD
 
 		return convidados;
 	}
@@ -32,20 +32,8 @@ public class ConvidadoService {
 		Optional<Convidado> convidado = repository.findById(id);
 		return convidado;
 	}
+	
 
-//
-//	public void editar(Long idUsuario, Convidado convidado) {
-//		List<Convidado> convidados = repository.buscarConvidados(); // obtém os dados do BD
-//		
-//		for (int i = 0; i < convidados.size(); i++) {
-//			Convidado c = convidados.get(i);
-//			if (c.getId().equals(idUsuario)) {
-//				convidados.set(i, convidado);
-//				return;
-//			}
-//		}
-		
-//	}
 	
 
 }

@@ -1,13 +1,15 @@
 package br.com.listavip.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import br.com.enviadorEmail.EmailService;
 import br.com.listavip.model.Convidado;
@@ -29,8 +31,8 @@ public class ConvidadoController {
 
 		Iterable<Convidado> convidados = service.ObterConvidados();
 
-		model.addAttribute("convidados", convidados); // No Spring MVC, o envio de vari·veis para a view
-													  // È realizada pelo Model - OBS: "convidados" È referente a view
+		model.addAttribute("convidados", convidados); // No Spring MVC, o envio de vari√°veis para a view
+													  // √© realizada pelo Model - OBS: "convidados" √© referente a view
 		return "listaconvidados";
 	}
 
@@ -43,7 +45,7 @@ public class ConvidadoController {
 		
 		new EmailService().enviar(nome, email); //Jar criado para o envio de email (enviadorEmail)
 
-		return "redirect:/listaconvidados"; //apÛs persistir os dados, redireciona para a p·gina
+		return "redirect:/listaconvidados"; //ap√≥s persistir os dados, redireciona para a p√°gina
 	}
 	
 	@RequestMapping("/deletar{id}")
@@ -53,15 +55,24 @@ public class ConvidadoController {
 		return "redirect:/listaconvidados";
 	}
 	
-	@RequestMapping(value = "/editar{id}", method = RequestMethod.PUT)
-	public String editar(@PathVariable Long idUsuario, @RequestBody Convidado convidado) {
-
-//		service.editar(idUsuario, convidado);
+	@RequestMapping(value = "/editar{id}")
+	public ModelAndView editar(@PathVariable Long id) {
+		
+		Optional<Convidado> convidado = service.procurarPorId(id);
+		
+		ModelAndView modelAndView = new ModelAndView("editar");
+		modelAndView.addObject("convidado", convidado);
 	
-		return "/editar";
-
+		return modelAndView;
+	
 	}
 	
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String update(Convidado convidado) {
+		service.salvar(convidado);
+
+		return "redirect:/listaconvidados"; //ap√≥s persistir os dados, redireciona para a p√°gina
+	}
 	
 
 }

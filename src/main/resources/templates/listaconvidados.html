@@ -40,11 +40,12 @@
 						<th>Nome</th>
 					</tr>
 				</thead>
+				
 				<tr th:each="convidado : ${convidados}">
-					<td><span th:text="${convidado.nome}"></span></td>
+					<td><span  th:text="${convidado.nome}"></span></td>
 					<td><span th:text="${convidado.email}"></span></td>
 					<td><span th:text="${convidado.telefone}"></span></td>
-					<td><a th:href="@{/editar}" class="btn btn-info btn-xs">Editar</a></td>
+					<td><a th:href="@{/editar} + ${convidado.id}" class="btn btn-info btn-xs">Editar</a></td>
 					<td><a th:href="@{/deletar} + ${convidado.id}" class="btn btn-danger btn-xs">Remover</a></td>
 				</tr>
 			</table>
